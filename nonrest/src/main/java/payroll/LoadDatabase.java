@@ -10,13 +10,20 @@ import org.springframework.context.annotation.Configuration;
 class LoadDatabase {
     private static final Logger log = LoggerFactory.getLogger(LoadDatabase.class);
 
+    /**
+     * CommandLineRunner: indicates that a bean should run
+     * when it is contained within a SpringApplication
+     *
+     * @param repository
+     * @return
+     */
     @Bean
     CommandLineRunner initDatabase(EmployeeRepository repository) {
         return args -> {
-            log.info("Preloading" + repository.save(new Employee("Alessandro Venturelli", "dev back-end")));
-            log.info("Preloading" + repository.save(new Employee("Simone Branzi", "dev android")));
-            log.info("Preloading" + repository.save(new Employee("Roberto Bragantini", "dev iOS")));
-            log.info("Preloading" + repository.save(new Employee("Giovanni Santoro", "dev android - external")));
+            log.info("Preloading " + repository.save(new Employee("Alessandro Venturelli", "dev back-end")));
+            log.info("Preloading " + repository.save(new Employee("Simone Branzi", "dev android")));
+            log.info("Preloading " + repository.save(new Employee("Roberto Bragantini", "dev iOS")));
+            log.info("Preloading " + repository.save(new Employee("Giovanni Santoro", "dev android - external")));
         };
     }
 }

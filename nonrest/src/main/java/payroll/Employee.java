@@ -6,10 +6,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-@Entity
+@Entity // annotazione JPA che indica che l'oggetto rappresenta dati che possono essere persistiti nel database
 class Employee {
 
-    private @Id @GeneratedValue Long id;
+    @Id             // indica che è la primary key dell'entità corrente
+    @GeneratedValue // per configurare il modo di incremento della colonna specificata
+    private Long id;
     private String name;
     private String role;
 
