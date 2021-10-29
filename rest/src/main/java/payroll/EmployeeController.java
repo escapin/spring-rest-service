@@ -14,9 +14,16 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 @RestController
 class EmployeeController {
     private final EmployeeRepository repository;
+    private final EmployeeModelAssembler assembler;
 
-    EmployeeController(EmployeeRepository repository) {
-        this.repository=repository;
+ //   EmployeeController(EmployeeRepository repository) {
+ //       this.repository=repository;
+ //   }
+
+    EmployeeController(EmployeeRepository repository, EmployeeModelAssembler assembler) {
+
+        this.repository = repository;
+        this.assembler = assembler;
     }
 
     @GetMapping("/employees/{id}")
@@ -24,22 +31,22 @@ class EmployeeController {
         Employee employee = repository.findById(id)
                 .orElseThrow(() -> new EmployeeNotFoundException(id));
 
-        EntityModel<Employee> employees = EntityModel.of(
-                employee,
-                linkTo(methodOn(EmployeeController.class).one(id)).withSelfRel(),
-                linkTo(methodOn(EmployeeController.class).all()).withRel("employees")
-        );
-        return employees;
+        return assembler.toModel(employee);
     }
 
     @GetMapping("/employees")
     CollectionModel<EntityModel<Employee>> all() {
 
+//        List<EntityModel<Employee>> employees =
+//                repository.findAll().stream()
+//                        .map(employee -> EntityModel.of(employee,
+//                            linkTo(methodOn(EmployeeController.class).one(employee.getId())).withSelfRel(),
+//                            linkTo(methodOn(EmployeeController.class).all()).withRel("employees")))
+//                        .collect(Collectors.toList());
+
         List<EntityModel<Employee>> employees =
                 repository.findAll().stream()
-                        .map(employee -> EntityModel.of(employee,
-                            linkTo(methodOn(EmployeeController.class).one(employee.getId())).withSelfRel(),
-                            linkTo(methodOn(EmployeeController.class).all()).withRel("employees")))
+                        .map(assembler::toModel)
                         .collect(Collectors.toList());
 
         CollectionModel<EntityModel<Employee>> returnedValue =
