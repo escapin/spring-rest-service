@@ -1,6 +1,7 @@
 # spring-rest-service
 
-https://spring.io/guides/tutorials/rest/
+- https://spring.io/guides/tutorials/rest/
+- https://github.com/spring-guides/tut-rest
 
 Dependencies:
 
