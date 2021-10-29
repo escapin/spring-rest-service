@@ -17,9 +17,9 @@ Test per tutti gli _HTTP methods_
 
 GET
 ```
-curl -v localhost:8080/employees
+curl -v localhost:8080/employees | json_pp
 
-curl -v localhost:8080/employees/1
+curl -v localhost:8080/employees/1 | json_pp
 ```
 
 POST
