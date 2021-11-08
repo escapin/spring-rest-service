@@ -12,7 +12,7 @@ Dependencies:
 - **H2 Database**:  Provides a fast in-memory database that supports JDBC API 
   and R2DBC access, with a small (2mb) footprint.
 
-Rest service stub can be started:
+Rest service example can be started by:
 ```
 > cd rest
 > mvn spring-boot:run
