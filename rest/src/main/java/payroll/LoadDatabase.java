@@ -20,10 +20,14 @@ class base {
     @Bean
     CommandLineRunner initDatabase(EmployeeRepository repository) {
         return args -> {
-            log.info("Preloading " + repository.save(new Employee("Alessandra Francarelli", "dev back-end")));
-            log.info("Preloading " + repository.save(new Employee("Simona Branzo", "dev android")));
-            log.info("Preloading " + repository.save(new Employee("Roberta Bragantino", "dev iOS")));
-            log.info("Preloading " + repository.save(new Employee("Giovanna Sentoro", "dev android - external")));
+            log.info("Preloading " + repository.save(new Employee("Zia Carmen",
+                    "cuoca ottimista")));
+            log.info("Preloading " + repository.save(new Employee("Nonna Dina",
+                    "commerciante")));
+            log.info("Preloading " + repository.save(new Employee("Nonno " +
+                    "Giovanni", "motivatore")));
+            log.info("Preloading " + repository.save(new Employee("Nonno " +
+                    "Aldo", "persona a posto con se stessa")));
         };
     }
 }
